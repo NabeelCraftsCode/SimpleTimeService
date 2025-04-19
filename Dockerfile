@@ -14,6 +14,9 @@ COPY . .
 # Create a non-root user and group
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
+# Make the log file writable
+RUN touch visitors.log && chown appuser:appgroup visitors.log
+
 # Change ownership of the app directory
 RUN chown -R appuser:appgroup /app
 
